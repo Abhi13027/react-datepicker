@@ -1,0 +1,327 @@
+/* Date Range Picker Styles - Matching vue2-datepicker design */
+
+/* CSS Variables */
+:root {
+  --dp-primary-color: #3b82f6;
+  --dp-primary-dark: #2563eb;
+  --dp-primary-light: #dbeafe;
+  --dp-text-color: #1f2937;
+  --dp-text-muted: #9ca3af;
+  --dp-border-color: #e5e7eb;
+  --dp-bg-color: #ffffff;
+  --dp-hover-color: #f3f4f6;
+  --dp-range-color: #eff6ff;
+  --dp-disabled-color: #d1d5db;
+  --dp-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --dp-border-radius: 4px;
+  --dp-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Main Container */
+.date-range-picker {
+  position: relative;
+  display: inline-block;
+  font-family: var(--dp-font-family);
+  font-size: 14px;
+}
+
+.date-range-picker.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Input Field */
+.picker-input {
+  display: flex;
+  align-items: center;
+  min-width: 280px;
+  padding: 8px 12px;
+  background: var(--dp-bg-color);
+  border: 1px solid var(--dp-border-color);
+  border-radius: var(--dp-border-radius);
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.picker-input:hover {
+  border-color: var(--dp-primary-color);
+}
+
+.picker-input.active {
+  border-color: var(--dp-primary-color);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+.picker-input input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 14px;
+  color: var(--dp-text-color);
+  cursor: pointer;
+}
+
+.picker-input input::placeholder {
+  color: var(--dp-text-muted);
+}
+
+.picker-input input:disabled {
+  cursor: not-allowed;
+}
+
+.picker-input-icons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--dp-text-muted);
+}
+
+.clear-icon {
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.clear-icon:hover {
+  color: var(--dp-text-color);
+}
+
+.calendar-icon {
+  display: flex;
+  align-items: center;
+}
+
+/* Popup */
+.picker-popup {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 1000;
+  background: var(--dp-bg-color);
+  border: 1px solid var(--dp-border-color);
+  border-radius: var(--dp-border-radius);
+  box-shadow: var(--dp-shadow);
+}
+
+/* Presets */
+.picker-presets {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--dp-border-color);
+}
+
+.preset-btn {
+  padding: 4px 8px;
+  background: transparent;
+  border: none;
+  color: var(--dp-text-color);
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.preset-btn:hover {
+  color: var(--dp-primary-color);
+}
+
+.preset-btn::after {
+  content: '|';
+  margin-left: 8px;
+  color: var(--dp-border-color);
+}
+
+.preset-btn:last-child::after {
+  content: '';
+  margin-left: 0;
+}
+
+/* Calendars Container */
+.picker-calendars {
+  display: flex;
+  padding: 16px;
+  gap: 24px;
+}
+
+/* Individual Calendar */
+.calendar {
+  width: 280px;
+}
+
+/* Calendar Header (From/To title) */
+.calendar-header {
+  background: var(--dp-primary-color);
+  color: white;
+  padding: 12px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: var(--dp-border-radius) var(--dp-border-radius) 0 0;
+}
+
+/* Calendar Navigation */
+.calendar-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 8px;
+}
+
+.nav-btn {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--dp-text-muted);
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: var(--dp-border-radius);
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-btn:hover {
+  background: var(--dp-hover-color);
+  color: var(--dp-text-color);
+}
+
+.calendar-month-year {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--dp-text-color);
+}
+
+/* Weekdays Header */
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 8px 0;
+  border-bottom: 1px solid var(--dp-border-color);
+}
+
+.weekday {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--dp-text-color);
+  padding: 4px;
+}
+
+/* Calendar Days Grid */
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  padding: 8px 0;
+}
+
+.calendar-day {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2px auto;
+  font-size: 14px;
+  color: var(--dp-text-color);
+  cursor: pointer;
+  border-radius: var(--dp-border-radius);
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.calendar-day:hover:not(.disabled):not(.other-month) {
+  background: var(--dp-hover-color);
+}
+
+/* Other month days (previous/next month) */
+.calendar-day.other-month {
+  color: var(--dp-text-muted);
+  cursor: default;
+}
+
+/* Today */
+.calendar-day.today {
+  font-weight: 600;
+}
+
+/* Disabled dates */
+.calendar-day.disabled {
+  color: var(--dp-disabled-color);
+  cursor: not-allowed;
+}
+
+/* Selected date */
+.calendar-day.selected {
+  background: var(--dp-primary-color);
+  color: white;
+}
+
+/* Range start */
+.calendar-day.range-start {
+  background: var(--dp-primary-color);
+  color: white;
+  border-radius: var(--dp-border-radius) 0 0 var(--dp-border-radius);
+}
+
+/* Range end */
+.calendar-day.range-end {
+  background: var(--dp-primary-color);
+  color: white;
+  border-radius: 0 var(--dp-border-radius) var(--dp-border-radius) 0;
+}
+
+/* Range start and end same day */
+.calendar-day.range-start.range-end {
+  border-radius: var(--dp-border-radius);
+}
+
+/* In range */
+.calendar-day.in-range:not(.range-start):not(.range-end) {
+  background: var(--dp-range-color);
+  border-radius: 0;
+}
+
+/* Hover range (while selecting) */
+.calendar-day.in-hover-range:not(.range-start) {
+  background: var(--dp-range-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .picker-calendars {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .picker-presets {
+    flex-wrap: wrap;
+  }
+  
+  .picker-popup {
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 95vw;
+  }
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.picker-popup {
+  animation: fadeIn 0.15s ease-out;
+}
